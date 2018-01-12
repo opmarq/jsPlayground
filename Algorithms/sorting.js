@@ -128,21 +128,44 @@ function quickSort(array)
         return array;
   
     let pivot = array[array.length - 1];
-
     let right = [];
     let left = [];
 
     for(let i = 0; i < array.length - 1; i++)
     {
         if(array[i] <= pivot)
-        {
             left.push(array[i]);
-        }else{
-
+        else
             right.push(array[i]);
-        }
     }
 
     return [...quickSort(left),pivot,...quickSort(right)];
-
 }
+
+
+function partition(array)
+{
+    let pivot = array.length - 1;
+
+    for(let i = 0; i<array.length; i++)
+    {
+        if(array[i] > array[pivot] )
+        {
+            let tmp = array[pivot];
+            array[pivot] = array[pivot - 1];
+            array[pivot - 1] = tmp;
+
+            let tmp2 = array[i];
+            array[i] = array[pivot];
+            array[pivot] = tmp2;
+
+            pivot--;
+        }
+    }
+
+    console.log(array);
+}
+
+let arr = [1,2,9,4,5,6,7,3];
+
+partition(arr);
